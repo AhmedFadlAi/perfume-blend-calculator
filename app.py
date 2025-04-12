@@ -1,16 +1,35 @@
-
 import streamlit as st
+from PIL import Image
 
-st.set_page_config(page_title="حاسبة تركيبة العطر", page_icon="🌿")
-st.title("حاسبة تركيبة عطر أحمد")
+st.set_page_config(page_title="Nashiq - حاسبة العطور", page_icon="🌿")
 
+# اللوجو
+logo = Image.open("A_logo_design_for_the_brand_\"Nashiq\"_is_displayed_.png")
+st.image(logo, use_column_width=True)
+
+# العنوان الأساسي
 st.markdown("""
-أدخل حجم العطر اللي عايز تحضره ونسبة تركيز الزيوت العطرية، وهتشوف الكميات المطلوبة لكل مكون.
-""")
+    <h1 style='text-align: center; color: #d4af37; font-family:serif;'>Nashiq</h1>
+    <h3 style='text-align: center; color: #ffffff;'>حاسبة تركيبة عطر فخم ومنعش</h3>
+    <hr style='border: 1px solid #d4af37;'>
+""", unsafe_allow_html=True)
+
+# خلفية داكنة
+st.markdown("""
+    <style>
+        body {
+            background-color: #1c1c1c;
+            color: white;
+        }
+        .stSlider > div > div {
+            color: #d4af37 !important;
+        }
+    </style>
+""", unsafe_allow_html=True)
 
 # مدخلات المستخدم
-total_volume_ml = st.number_input("أدخل الحجم الكلي للعطر (بالمليليتر):", min_value=10, max_value=500, value=100)
-concentration_percent = st.slider("اختر نسبة تركيز الزيوت العطرية (%):", 5, 30, 20)
+total_volume_ml = st.number_input("🧪 أدخل الحجم الكلي للعطر (بالمليليتر):", min_value=10, max_value=500, value=100)
+concentration_percent = st.slider("💧 اختر نسبة تركيز الزيوت العطرية (%):", 5, 30, 20)
 
 # المكونات الأساسية
 ingredients = {
@@ -41,9 +60,18 @@ st.subheader("تفصيل المكونات:")
 
 for name, percent in ingredients.items():
     amount_ml = round((percent / 100) * oil_volume_ml, 2)
-    st.write(f"- {name}: {percent}% = {amount_ml} مل")
+    st.markdown(f"<div style='color:#d4af37;'>- {name}: {percent}% = <strong>{amount_ml} مل</strong></div>", unsafe_allow_html=True)
 
 st.markdown(f"""
-### الكحول المطلوب:
-**{alcohol_volume} مل**
-""")
+    <br>
+    <div style='background-color:#333;padding:15px;border-radius:10px;'>
+        <h4 style='color:#d4af37;'>الكحول المطلوب:</h4>
+        <p style='color:white;font-size:18px;'><strong>{alcohol_volume} مل</strong></p>
+    </div>
+""", unsafe_allow_html=True)
+
+st.markdown("""
+    <br>
+    <hr style='border: 1px solid #d4af37;'>
+    <p style='text-align:center;color:gray;'>هذا العطر تم تطويره بواسطة <strong>أحمد فاضل</strong> – مشروع Nashiq 💎</p>
+""", unsafe_allow_html=True)
