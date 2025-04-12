@@ -4,7 +4,7 @@ from PIL import Image
 st.set_page_config(page_title="Nashiq - حاسبة العطور", page_icon="🌿")
 
 # اللوجو
-logo = Image.open("ChatGPT Image 12 أبريل 2025، 09_47_47 م.png")
+logo = Image.open("ChatGPT Image 12 أبريل 2025، 09_47_47 م")
 st.image(logo, use_column_width=True)
 
 # العنوان الأساسي
